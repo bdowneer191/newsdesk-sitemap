@@ -14,7 +14,7 @@
  * IMPLEMENTATION: NDS_Cache_Manager with multi-layer caching and SQL hardening.
  */
 
-// Exit if accessed directly - Security measure
+[cite_start]// Exit if accessed directly - Security measure [cite: 10390]
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -23,6 +23,7 @@ class NDS_Cache_Manager {
 
 	/**
 	 * Cache prefix to avoid conflicts
+	 [cite_start]* [cite: 4988]
 	 *
 	 * @since    1.0.0
 	 * @access   private
@@ -32,6 +33,7 @@ class NDS_Cache_Manager {
 
 	/**
 	 * Cache duration in seconds
+	 [cite_start]* [cite: 4996]
 	 *
 	 * @since    1.0.0
 	 * @access   private
@@ -41,6 +43,7 @@ class NDS_Cache_Manager {
 
 	/**
 	 * Whether object cache is available
+	 [cite_start]* [cite: 5004]
 	 *
 	 * @since    1.0.0
 	 * @access   private
@@ -50,6 +53,7 @@ class NDS_Cache_Manager {
 
 	/**
 	 * Cache backend type (redis, memcached, or transient)
+	 [cite_start]* [cite: 5012]
 	 *
 	 * @since    1.0.0
 	 * @access   private
@@ -59,7 +63,7 @@ class NDS_Cache_Manager {
 
 	/**
 	 * Initialize the cache manager
-	 * [cite: 4975-4985]
+	 [cite_start]* [cite: 5018-5021]
 	 *
 	 * @since    1.0.0
 	 */
@@ -71,23 +75,23 @@ class NDS_Cache_Manager {
 
 	/**
 	 * Detect available cache backend
-	 * [cite: 4991-5015]
+	 [cite_start]* [cite: 5029-5043]
 	 *
 	 * @since    1.0.0
 	 * @return   string    Cache backend type
 	 */
 	private function detect_cache_backend() {
-		// If object cache is disabled in settings, always use transients
+		[cite_start]// If object cache is disabled in settings, always use transients [cite: 5031]
 		if ( ! get_option( 'nds_enable_object_cache', false ) ) {
 			return 'transient';
 		}
 
-		// Check for Redis extension and connection
+		[cite_start]// Check for Redis extension and connection [cite: 5035]
 		if ( class_exists( 'Redis' ) && $this->test_redis_connection() ) {
 			return 'redis';
 		}
 
-		// Check for Memcached extension and connection
+		[cite_start]// Check for Memcached extension and connection [cite: 5039]
 		if ( class_exists( 'Memcached' ) && $this->test_memcached_connection() ) {
 			return 'memcached';
 		}
@@ -97,12 +101,16 @@ class NDS_Cache_Manager {
 
 	/**
 	 * Test Redis connection
+	 [cite_start]* [cite: 5051-5062]
 	 *
 	 * @since    1.0.0
 	 * @return   bool
 	 */
 	private function test_redis_connection() {
 		try {
+			if ( ! class_exists( 'Redis' ) ) {
+				return false;
+			}
 			$redis = new Redis();
 			// Default local connection check
 			$connected = @$redis->connect( '127.0.0.1', 6379, 0.5 );
@@ -111,32 +119,36 @@ class NDS_Cache_Manager {
 				return true;
 			}
 		} catch ( Exception $e ) {
-			// Fail silently to backend fallback
+			[cite_start]// Fail silently to backend fallback [cite: 5060]
 		}
 		return false;
 	}
 
 	/**
 	 * Test Memcached connection
+	 [cite_start]* [cite: 5070-5079]
 	 *
 	 * @since    1.0.0
 	 * @return   bool
 	 */
 	private function test_memcached_connection() {
 		try {
+			if ( ! class_exists( 'Memcached' ) ) {
+				return false;
+			}
 			$memcached = new Memcached();
 			$memcached->addServer( '127.0.0.1', 11211 );
 			$stats = $memcached->getStats();
 			return ! empty( $stats );
 		} catch ( Exception $e ) {
-			// Fail silently to backend fallback
+			[cite_start]// Fail silently to backend fallback [cite: 5077]
 		}
 		return false;
 	}
 
 	/**
 	 * Get cached data
-	 * [cite: 5045-5065]
+	 [cite_start]* [cite: 5088-5098]
 	 *
 	 * @since    1.0.0
 	 * @param    string    $key    Cache key
@@ -158,7 +170,7 @@ class NDS_Cache_Manager {
 
 	/**
 	 * Set cached data
-	 * [cite: 5071-5095]
+	 [cite_start]* [cite: 5109-5120]
 	 *
 	 * @since    1.0.0
 	 * @param    string    $key           Cache key
@@ -183,7 +195,7 @@ class NDS_Cache_Manager {
 
 	/**
 	 * Delete cached data
-	 * [cite: 5101-5115]
+	 [cite_start]* [cite: 5129-5139]
 	 *
 	 * @since    1.0.0
 	 * @param    string    $key    Cache key
@@ -205,7 +217,7 @@ class NDS_Cache_Manager {
 
 	/**
 	 * Clear all plugin caches
-	 * [cite: 5121-5145]
+	 [cite_start]* [cite: 5147-5169]
 	 *
 	 * @since    1.0.0
 	 * @return   bool    Success status
@@ -222,7 +234,7 @@ class NDS_Cache_Manager {
 				break;
 		}
 
-		// Always clear transients as fallback/primary storage
+		[cite_start]// Always clear transients as fallback/primary storage [cite: 5155]
 		$wpdb->query(
 			$wpdb->prepare(
 				"DELETE FROM {$wpdb->options} 
@@ -239,7 +251,7 @@ class NDS_Cache_Manager {
 	}
 
 	/**
-	 * Redis implementation methods
+	 * [cite_start]Redis implementation methods [cite: 5178-5234]
 	 */
 	private function get_from_redis( $key ) {
 		try {
@@ -292,7 +304,7 @@ class NDS_Cache_Manager {
 	}
 
 	/**
-	 * Memcached implementation methods
+	 * [cite_start]Memcached implementation methods [cite: 5259-5324]
 	 */
 	private function get_from_memcached( $key ) {
 		try {
@@ -336,6 +348,7 @@ class NDS_Cache_Manager {
 
 	/**
 	 * Utility function to generate cache key
+	 [cite_start]* [cite: 5332]
 	 *
 	 * @since    1.0.0
 	 * @param    string    $key    Base key
@@ -347,7 +360,7 @@ class NDS_Cache_Manager {
 
 	/**
 	 * Get cache statistics
-	 * [cite: 5315-5330]
+	 [cite_start]* [cite: 5341-5347]
 	 *
 	 * @since    1.0.0
 	 * @return   array    Cache stats
@@ -363,6 +376,7 @@ class NDS_Cache_Manager {
 
 	/**
 	 * Count total cached keys for this plugin
+	 [cite_start]* [cite: 5355]
 	 *
 	 * @since    1.0.0
 	 * @return   int
