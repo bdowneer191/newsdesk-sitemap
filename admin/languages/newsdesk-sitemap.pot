@@ -1,0 +1,115 @@
+# Copyright (C) 2026 NewsDesk Sitemap
+# This file is distributed under the same license as the NewsDesk Sitemap package.
+msgid ""
+msgstr ""
+"Project-Id-Version: NewsDesk Sitemap 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/newsdesk-sitemap\n"
+"POT-Creation-Date: 2026-01-06 01:50:00+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2026-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: newsdesk-sitemap.php:54
+msgid "NewsDesk Sitemap requires PHP %1$s or higher. You are running %2$s."
+msgstr ""
+
+#: newsdesk-sitemap.php:73
+msgid "NewsDesk Sitemap requires WordPress %1$s or higher. You are running %2$s."
+msgstr ""
+
+#: includes/class-nds-activator.php:57
+msgid "NewsDesk Sitemap activation failed: "
+msgstr ""
+
+#: includes/class-nds-activator.php:58
+msgid "Activation Error"
+msgstr ""
+
+#: admin/class-nds-admin-settings.php:84
+#: admin/class-nds-admin-settings.php:85
+msgid "News Sitemap"
+msgstr ""
+
+#: admin/class-nds-admin-settings.php:96
+#: admin/class-nds-admin-settings.php:327
+msgid "Settings"
+msgstr ""
+
+#: admin/class-nds-admin-settings.php:105
+msgid "Dashboard"
+msgstr ""
+
+#: admin/class-nds-admin-settings.php:114
+msgid "Validation"
+msgstr ""
+
+#: admin/class-nds-admin-settings.php:123
+msgid "Logs"
+msgstr ""
+
+#: admin/class-nds-admin-settings.php:137
+msgid "General Settings"
+msgstr ""
+
+#: admin/class-nds-admin-settings.php:164
+msgid "Content Filters"
+msgstr ""
+
+#: admin/class-nds-admin-settings.php:181
+msgid "Ping Settings"
+msgstr ""
+
+#: admin/class-nds-admin-settings.php:200
+msgid "Performance Settings"
+msgstr ""
+
+#: admin/class-nds-admin-settings.php:269
+msgid "Validating..."
+msgstr ""
+
+#: admin/class-nds-admin-settings.php:270
+msgid "Success!"
+msgstr ""
+
+#: admin/class-nds-admin-settings.php:271
+msgid "Error occurred"
+msgstr ""
+
+#: admin/class-nds-admin-settings.php:346
+msgid "NewsDesk Sitemap has been activated!"
+msgstr ""
+
+#: admin/class-nds-admin-settings.php:348
+msgid "Configure settings"
+msgstr ""
+
+#: admin/class-nds-admin-settings.php:356
+msgid "Please set your publication name in News Sitemap settings to comply with Google News requirements."
+msgstr ""
+
+#: admin/meta-boxes/class-nds-breaking-news-meta.php:53
+msgid "Mark as Breaking News"
+msgstr ""
+
+#: admin/meta-boxes/class-nds-genre-meta.php:57
+msgid "Article Genre:"
+msgstr ""
+
+#: admin/views/dashboard-page.php:24
+msgid "Monthly Pings"
+msgstr ""
+
+#: admin/views/dashboard-page.php:29
+msgid "Success Rate"
+msgstr ""
+
+#: admin/views/dashboard-page.php:34
+msgid "Cache Efficiency"
+msgstr ""
+
+#: admin/views/dashboard-page.php:39
+msgid "Active News Posts"
+msgstr ""

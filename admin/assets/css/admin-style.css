@@ -1,0 +1,43 @@
+/* NewsDesk Sitemap Admin Styles */
+.nds-settings-wrap {
+    max-width: 1200px;
+}
+
+.nds-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.nds-stat-card {
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ccd0d4;
+    border-radius: 4px;
+}
+
+.nds-stat-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 2em;
+    color: #2271b1;
+}
+
+.nav-tab-wrapper {
+    margin-bottom: 20px;
+}
+
+.nds-sidebar {
+    margin-top: 20px;
+}
+
+.nds-widget {
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ccd0d4;
+}
+
+.nds-widget h3 {
+    margin-top: 0;
+}
